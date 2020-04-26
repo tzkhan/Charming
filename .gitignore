@@ -362,7 +362,7 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/csharp,dotnetcore
 
-[Aa]rtefacts/
+[Aa]rtifacts/
 [Ll]ocal/
 [Ll]ogs/
 [Tt]emplateFormats/

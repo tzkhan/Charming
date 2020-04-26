@@ -1,10 +1,10 @@
 param (
-    [string]$ArtefactsPath = "artefacts",
+    [string]$ArtifactsPath = "artifacts",
     [string]$Configuration = "Release",
     [string]$BuildId
 )
 
-Write-Host "ArtefactsPath: $ArtefactsPath"
+Write-Host "ArtifactsPath: $ArtifactsPath"
 Write-Host "BuildId: $BuildId"
 
 function Log-Host
@@ -17,7 +17,7 @@ function Log-Host
 }
 
 $sln = "src\Charming.sln"
-$versionSuffix = "alpha-$BuildId"
+$versionSuffix = @{ $true = "alpha.$BuildId"; $false = "alpha" }[$BuildId -ne ""]
 $packProjects = @(
     "src\Charming\Charming.csproj"
     "src\Charming.Types\Charming.Types.csproj"
@@ -31,5 +31,5 @@ dotnet test $sln -c $Configuration --no-restore --no-build
 
 Log-Host "Publishing nuget packages for build $BuildId"
 foreach ($project in $packProjects) {
-    dotnet pack $project -c $Configuration -o $ArtefactsPath --version-suffix $versionSuffix --no-restore --no-build
+    dotnet pack $project -c $Configuration -o $ArtifactsPath --version-suffix $versionSuffix --no-restore --no-build
 }

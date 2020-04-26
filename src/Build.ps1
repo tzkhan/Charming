@@ -17,6 +17,7 @@ $sln = "Charming.sln"
 $versionSuffix = "alpha-$BuildId"
 $packProjects = @(
     "Charming\Charming.csproj"
+    "Charming.Types\Charming.Types.csproj"
 )
 
 Log-Host "Building solution"

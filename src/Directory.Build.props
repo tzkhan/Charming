@@ -1,6 +1,15 @@
 <Project>
   <PropertyGroup>
-	<WithinLocal>$(MSBuildProjectDirectory.Contains('src\Local'))</WithinLocal>
+    <Authors>Tamim Khan</Authors>
+    <Copyright>Copyright © Tamim Khan</Copyright>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <LangVersion>8.0</LangVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WithinLocal>$(MSBuildProjectDirectory.Contains('src\Local'))</WithinLocal>
   </PropertyGroup>
   <PropertyGroup Condition="$(WithinLocal)">
     <CodeAnalysisRuleSet>$(MSBuildProjectDirectory)\..\..\CodeAnalysis.ruleset</CodeAnalysisRuleSet>

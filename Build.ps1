@@ -18,7 +18,7 @@ function Log-Host
 }
 
 $sln = "src\Charming.sln"
-$versionSuffix = @{ $true = "alpha.$BuildId"; $false = "alpha" }[$BuildId -ne ""]
+$versionSuffix = @{ $true = "ci-$BuildId"; $false = "alpha" }[$BuildId -ne ""]
 $packProjects = @(
     "src\Charming\Charming.csproj"
     "src\Charming.Types\Charming.Types.csproj"
@@ -30,7 +30,7 @@ dotnet build $sln -c $Configuration
 Log-Host "Running tests on solution"
 dotnet test $sln -c $Configuration --no-restore --no-build
 
-Log-Host "Publishing nuget packages for build $BuildId"
+Log-Host "Publishing nuget packages"
 foreach ($project in $packProjects) {
     dotnet pack $project -c $Configuration -o $ArtifactsPath --version-suffix $versionSuffix --no-restore --no-build
 }

@@ -17,7 +17,4 @@
   <PropertyGroup Condition="!$(WithinLocal)">
     <CodeAnalysisRuleSet>$(MSBuildProjectDirectory)\..\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="$(SolutionDir)\stylecop.json" />
-  </ItemGroup>
 </Project>

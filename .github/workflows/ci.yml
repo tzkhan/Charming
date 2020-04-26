@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-        run: ./Build.ps1 -BuildId $GITHUB_RUN_NUMBER
+        run: ./Build.ps1 -ArtefactsPath "/artefacts" -BuildId $GITHUB_RUN_NUMBER
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
         with:

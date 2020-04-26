@@ -1,8 +1,11 @@
 param (
-    [string]$ArtefactsPath = "\artefacts",
+    [string]$ArtefactsPath = "artefacts",
     [string]$Configuration = "Release",
     [string]$BuildId
 )
+
+Write-Host "ArtefactsPath: $ArtefactsPath"
+Write-Host "BuildId: $BuildId"
 
 function Log-Host
 {

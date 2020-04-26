@@ -1,15 +1,13 @@
 param (
     [string]$ArtifactsPath = ".\artifacts",
     [string]$Configuration = "Release",
-    [string]$BuildId,
-    [string]$Workspace
+    [string]$BuildId
 )
 
 Write-Host "ArtifactsPath: $ArtifactsPath"
 Write-Host "BuildId: $BuildId"
-Write-Host "Using param: $Workspace"
-Write-Host "Using env: $GITHUB_WORKSPACE"
-Write-Host "Using ps env:" $env:GITHUB_WORKSPACE
+Write-Host "Using env: $GITHUB_RUN_NUMBER"
+Write-Host "Using ps env:" $env:GITHUB_RUN_NUMBER
 
 function Log-Host
 {

@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-        run: ./Build.ps1 -ArtifactsPath "./artifacts" -BuildId $GITHUB_RUN_NUMBER -Workspace $GITHUB_WORKSPACE
+        run: ./Build.ps1 -ArtifactsPath "./artifacts" -BuildId $(GITHUB_RUN_NUMBER)
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: NuGet
-          path: artifacts/*.nupkg
+          name: Packages
+          path: artifacts

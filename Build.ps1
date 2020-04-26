@@ -4,6 +4,8 @@ param (
     [string]$BuildId
 )
 
+$BuildId = ($BuildId, $env:GITHUB_RUN_NUMBER -ne $null)[0]
+
 Write-Host "ArtifactsPath: $ArtifactsPath"
 Write-Host "BuildId: $BuildId"
 Write-Host "Using env: $GITHUB_RUN_NUMBER"

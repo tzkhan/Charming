@@ -13,11 +13,11 @@ function Log-Host
     Write-Host $Text -BackgroundColor Yellow -ForegroundColor DarkRed
 }
 
-$sln = "Charming.sln"
+$sln = "src\Charming.sln"
 $versionSuffix = "alpha-$BuildId"
 $packProjects = @(
-    "Charming\Charming.csproj"
-    "Charming.Types\Charming.Types.csproj"
+    "src\Charming\Charming.csproj"
+    "src\Charming.Types\Charming.Types.csproj"
 )
 
 Log-Host "Building solution"

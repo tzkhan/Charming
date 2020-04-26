@@ -4,12 +4,9 @@ param (
     [string]$BuildId
 )
 
-$BuildId = ($BuildId, $env:GITHUB_RUN_NUMBER -ne $null)[0]
-
 Write-Host "ArtifactsPath: $ArtifactsPath"
+Write-Host "Configuration: $Configuration"
 Write-Host "BuildId: $BuildId"
-Write-Host "Using env: $GITHUB_RUN_NUMBER"
-Write-Host "Using ps env:" $env:GITHUB_RUN_NUMBER
 
 function Log-Host
 {

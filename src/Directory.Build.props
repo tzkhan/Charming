@@ -1,0 +1,14 @@
+<Project>
+  <PropertyGroup>
+	<WithinLocal>$(MSBuildProjectDirectory.Contains('src\Local'))</WithinLocal>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(WithinLocal)">
+    <CodeAnalysisRuleSet>$(MSBuildProjectDirectory)\..\..\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="!$(WithinLocal)">
+    <CodeAnalysisRuleSet>$(MSBuildProjectDirectory)\..\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="$(SolutionDir)\stylecop.json" />
+  </ItemGroup>
+</Project>

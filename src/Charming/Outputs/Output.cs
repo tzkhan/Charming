@@ -29,7 +29,7 @@ namespace Charming
         /// Creates an array output as a list of strings.
         /// </summary>
         /// <param name="key">Value to use as a key for the array output.</param>
-        /// <param name="values">List of string values to be added to the array output.</param>
+        /// <param name="values">Sequence of string values to be added to the array output.</param>
         /// <returns>Array output with a list of strings.</returns>
         public static Output Array(string key, params string[] values) =>
             Array(key, values.ToList());
@@ -38,9 +38,9 @@ namespace Charming
         /// Creates an array output as a list of strings.
         /// </summary>
         /// <param name="key">Value to use as a key for the array output.</param>
-        /// <param name="values">List of string values to be added to the array output.</param>
+        /// <param name="values">Sequence of string values to be added to the array output.</param>
         /// <returns>Array output with a list of strings.</returns>
-        public static Output Array(string key, IList<string> values) =>
+        public static Output Array(string key, IEnumerable<string> values) =>
             new Output
             {
                 Key = key,
@@ -57,9 +57,9 @@ namespace Charming
         /// Creates an array output as a list of objects.
         /// </summary>
         /// <param name="key">Value to use as a key for the array output.</param>
-        /// <param name="values">List of objects mapped as a dictionary of key value strings to be added to the array output.</param>
+        /// <param name="values">Sequence of objects mapped as a dictionary of key value strings to be added to the array output.</param>
         /// <returns>Array output with a list of objects.</returns>
-        public static Output Array(string key, IList<Dictionary<string, string>> values) =>
+        public static Output Array(string key, IEnumerable<Dictionary<string, string>> values) =>
             new Output
             {
                 Key = key,

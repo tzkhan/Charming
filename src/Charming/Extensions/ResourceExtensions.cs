@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using Charming.Internal;
 
     /// <summary>
@@ -39,12 +40,34 @@
         /// Adds a sequence of resources to <see cref="Resource.DependsOn"/>.
         /// </summary>
         /// <typeparam name="TResource">A type representing a resource.</typeparam>
-        /// <param name="resource">Cuurent resource.</param>
+        /// <param name="resource">Current resource.</param>
+        /// <param name="dependencies">Resources to add as dependencies.</param>
+        /// <returns>Returns the current resource for chaining.</returns>
+        public static TResource WithDependencies<TResource>(this TResource resource, params Resource[] dependencies)
+            where TResource : Resource =>
+            resource.WithEnumerable(resource.DependsOn, dependencies?.ToList());
+
+        /// <summary>
+        /// Adds a sequence of resources to <see cref="Resource.DependsOn"/>.
+        /// </summary>
+        /// <typeparam name="TResource">A type representing a resource.</typeparam>
+        /// <param name="resource">Current resource.</param>
         /// <param name="dependencies">Resources to add as dependencies.</param>
         /// <returns>Returns the current resource for chaining.</returns>
         public static TResource WithDependencies<TResource>(this TResource resource, IEnumerable<Resource> dependencies)
             where TResource : Resource =>
             resource.WithEnumerable(resource.DependsOn, dependencies);
+
+        /// <summary>
+        /// Adds a sequence of resources to <see cref="Resource.Resources"/>.
+        /// </summary>
+        /// <typeparam name="TResource">A type representing a resource.</typeparam>
+        /// <param name="resource">Current resource.</param>
+        /// <param name="resources">Child resources to add to the current resource.</param>
+        /// <returns>Returns the current resource for chaining.</returns>
+        public static TResource WithResources<TResource>(this TResource resource, params Resource[] resources)
+            where TResource : Resource =>
+            resource.WithEnumerable(resource.Resources, resources?.ToList());
 
         /// <summary>
         /// Adds a sequence of resources to <see cref="Resource.Resources"/>.
@@ -71,7 +94,7 @@
         private static TResource WithEnumerable<TResource, T>(
             this TResource resource,
             ICollection<T> collection,
-            IEnumerable<T> enumerable)
+            IEnumerable<T>? enumerable)
             where TResource : Resource
         {
             collection.AddEnumerable(enumerable);

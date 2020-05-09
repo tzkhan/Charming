@@ -17,7 +17,7 @@
         /// </summary>
         /// <param name="template">Current template.</param>
         /// <param name="key">Value to use as a key for the array output.</param>
-        /// <param name="values">List of string values to be added to the array output.</param>
+        /// <param name="values">Sequence of string values to be added to the array output.</param>
         public static void AddArrayOutput(this ITemplate template, string key, params string[] values) =>
             template.Outputs.Add(Output.Array(key, values));
 
@@ -26,8 +26,8 @@
         /// </summary>
         /// <param name="template">Current template.</param>
         /// <param name="key">Value to use as a key for the array output.</param>
-        /// <param name="values">List of string values to be added to the array output.</param>
-        public static void AddArrayOutput(this ITemplate template, string key, IList<string> values) =>
+        /// <param name="values">Sequence of string values to be added to the array output.</param>
+        public static void AddArrayOutput(this ITemplate template, string key, IEnumerable<string> values) =>
             template.Outputs.Add(Output.Array(key, values));
 
         /// <summary>
@@ -35,8 +35,8 @@
         /// </summary>
         /// <param name="template">Current template.</param>
         /// <param name="key">Value to use as a key for the array output.</param>
-        /// <param name="values">List of objects mapped as a dictionary of key value strings to be added to the array output.</param>
-        public static void AddArrayOutput(this ITemplate template, string key, IList<Dictionary<string, string>> values) =>
+        /// <param name="values">Sequence of objects mapped as a dictionary of key value strings to be added to the array output.</param>
+        public static void AddArrayOutput(this ITemplate template, string key, IEnumerable<Dictionary<string, string>> values) =>
             template.Outputs.Add(Output.Array(key, values));
 
         /// <summary>
@@ -98,7 +98,7 @@
         /// </summary>
         /// <typeparam name="TTemplate">A type representing a template.</typeparam>
         /// <param name="template">Current template.</param>
-        /// <param name="resources">List of resources to deploy.</param>
+        /// <param name="resources">Sequence of resources to deploy.</param>
         /// <returns>Returns the current template for chaining.</returns>
         public static TTemplate WithResources<TTemplate>(this TTemplate template, params Resource[] resources)
             where TTemplate : Template =>
@@ -109,7 +109,7 @@
         /// </summary>
         /// <typeparam name="TTemplate">A type representing a template.</typeparam>
         /// <param name="template">Current template.</param>
-        /// <param name="resources">List of resources to deploy.</param>
+        /// <param name="resources">Sequence of resources to deploy.</param>
         /// <returns>Returns the current template for chaining.</returns>
         public static TTemplate WithResources<TTemplate>(this TTemplate template, IEnumerable<Resource> resources)
             where TTemplate : Template =>
@@ -120,7 +120,7 @@
         /// </summary>
         /// <typeparam name="TTemplate">A type representing a template.</typeparam>
         /// <param name="template">Current template.</param>
-        /// <param name="outputs">List of outputs to display after deployment.</param>
+        /// <param name="outputs">Sequence of outputs to display after deployment.</param>
         /// <returns>Returns the current template for chaining.</returns>
         public static TTemplate WithOutputs<TTemplate>(this TTemplate template, params Output[] outputs)
             where TTemplate : Template =>
@@ -131,7 +131,7 @@
         /// </summary>
         /// <typeparam name="TTemplate">A type representing a template.</typeparam>
         /// <param name="template">Current template.</param>
-        /// <param name="outputs">List of outputs to display after deployment.</param>
+        /// <param name="outputs">Sequence of outputs to display after deployment.</param>
         /// <returns>Returns the current template for chaining.</returns>
         public static TTemplate WithOutputs<TTemplate>(this TTemplate template, IEnumerable<Output> outputs)
             where TTemplate : Template =>

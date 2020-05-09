@@ -97,14 +97,30 @@
         }
 
         [Fact]
-        public void WithDependencies_ShouldAddResourceToDependsOnPropertyAndReturnResource()
+        public void WithDependencies_WithParamsResources_ShouldAddResourceToResourcesPropertyAndReturnTemplate()
         {
             // Arrange
             var resource = new TestResource();
             var dependency = new TestResource();
 
             // Act
-            var result = resource.WithDependencies(new[] { dependency });
+            var result = resource.WithDependencies(dependency);
+
+            // Assert
+            result.Should().BeSameAs(resource);
+            result.DependsOn.Should().HaveCount(1);
+            result.DependsOn.First().Should().BeSameAs(dependency);
+        }
+
+        [Fact]
+        public void WithDependencies_WithListOfResources_ShouldAddResourceToDependsOnPropertyAndReturnResource()
+        {
+            // Arrange
+            var resource = new TestResource();
+            var dependency = new TestResource();
+
+            // Act
+            var result = resource.WithDependencies(new List<Resource> { dependency });
 
             // Assert
             result.Should().BeSameAs(resource);
@@ -127,14 +143,30 @@
         }
 
         [Fact]
-        public void WithResources_ShouldAddResourceToResourcesPropertyAndReturnResource()
+        public void WithResources_WithParamsResources_ShouldAddResourceToResourcesPropertyAndReturnResource()
         {
             // Arrange
             var resource = new TestResource();
             var childResource = new TestResource();
 
             // Act
-            var result = resource.WithResources(new[] { childResource });
+            var result = resource.WithResources(childResource);
+
+            // Assert
+            result.Should().BeSameAs(resource);
+            result.Resources.Should().HaveCount(1);
+            result.Resources.First().Should().BeSameAs(childResource);
+        }
+
+        [Fact]
+        public void WithResources_WithListOfResources_ShouldAddResourceToResourcesPropertyAndReturnResource()
+        {
+            // Arrange
+            var resource = new TestResource();
+            var childResource = new TestResource();
+
+            // Act
+            var result = resource.WithResources(new List<Resource> { childResource });
 
             // Assert
             result.Should().BeSameAs(resource);

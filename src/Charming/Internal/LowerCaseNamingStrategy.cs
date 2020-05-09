@@ -4,7 +4,7 @@
 
     internal class LowerCaseNamingStrategy : NamingStrategy
     {
-#pragma warning disable CA1308
+        #pragma warning disable CA1308
         protected override string ResolvePropertyName(string name) => name.ToLowerInvariant();
     }
 }

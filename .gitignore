@@ -371,3 +371,4 @@ MigrationBackup/
 *.json
 .env
 .DS_Store
+Charming.xml

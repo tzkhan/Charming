@@ -1,12 +1,12 @@
 param (
     [string]$ArtifactsPath = ".\artifacts",
     [string]$Configuration = "Release",
-    [string]$BuildId
+    [string]$SuffixOverride
 )
 
 Write-Host "ArtifactsPath: $ArtifactsPath"
 Write-Host "Configuration: $Configuration"
-Write-Host "BuildId: $BuildId"
+Write-Host "SuffixOverride: $SuffixOverride"
 
 function Log-Host
 {
@@ -18,7 +18,7 @@ function Log-Host
 }
 
 $sln = "src\Charming.sln"
-$versionSuffix = @{ $true = "ci-$BuildId"; $false = "alpha" }[$BuildId -ne ""]
+$versionSuffix = @{ $true = $SuffixOverride; $false = "preview" }[$SuffixOverride -ne ""]
 $packProjects = @(
     "src\Charming\Charming.csproj"
     "src\Charming.Types\Charming.Types.csproj"

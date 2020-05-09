@@ -8,13 +8,4 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-  <PropertyGroup>
-    <WithinLocal>$(MSBuildProjectDirectory.Contains('src\Local'))</WithinLocal>
-  </PropertyGroup>
-  <PropertyGroup Condition="$(WithinLocal)">
-    <CodeAnalysisRuleSet>$(MSBuildProjectDirectory)\..\..\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="!$(WithinLocal)">
-    <CodeAnalysisRuleSet>$(MSBuildProjectDirectory)\..\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
 </Project>

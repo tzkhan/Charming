@@ -1,4 +1,5 @@
-﻿namespace Charming
+﻿#pragma warning disable CS1591, SA1600
+namespace Charming
 {
     public abstract class OutputValue
     {

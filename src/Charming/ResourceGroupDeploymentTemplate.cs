@@ -1,15 +1,35 @@
 ﻿namespace Charming
 {
-    using System.Collections.Generic;
-
-    public class ResourceGroupDeploymentTemplate : ITemplate
+    /// <summary>
+    /// Represents a resource group scoped deployment template.
+    /// </summary>
+    public class ResourceGroupDeploymentTemplate : Template
     {
-        public string Schema { get; set; } = Constants.DeploymentTemplateSchema;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResourceGroupDeploymentTemplate"/> class.
+        /// Sets the <see cref="ITemplate.Schema"/> and <see cref="ITemplate.ContentVersion"/>
+        /// to default values.
+        /// </summary>
+        public ResourceGroupDeploymentTemplate()
+        {
+            Schema = Constants.DeploymentTemplateSchema;
+            ContentVersion = Constants.DefaultContentVersion;
+        }
 
-        public string ContentVersion { get; set; } = Constants.DefaultContentVersion;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResourceGroupDeploymentTemplate"/> class.
+        /// Sets the <see cref="ITemplate.ContentVersion"/> to a default value.
+        /// </summary>
+        /// <param name="schema">Schema location describing the json used.</param>
+        public ResourceGroupDeploymentTemplate(string schema) =>
+            (Schema, ContentVersion) = (schema, Constants.DefaultContentVersion);
 
-        public IList<IResource> Resources { get; } = new List<IResource>();
-
-        public IList<Output> Outputs { get; } = new List<Output>();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResourceGroupDeploymentTemplate"/> class.
+        /// </summary>
+        /// <param name="schema">Schema location describing the json used.</param>
+        /// <param name="contentVersion">Version of the template.</param>
+        public ResourceGroupDeploymentTemplate(string schema, string contentVersion) =>
+            (Schema, ContentVersion) = (schema, contentVersion);
     }
 }

@@ -1,11 +1,25 @@
-﻿namespace Charming.Serialization
+﻿namespace Charming.Internal
 {
     using System;
     using System.Collections.Generic;
 
     internal static class Extensions
     {
-        public static bool TryGetValueForAssignableType<T>(this IDictionary<Type, T> dictionary, Type key, out T value)
+        public static void AddEnumerable<T>(this ICollection<T> collection, IEnumerable<T>? enumerable)
+        {
+            if (enumerable is null)
+            {
+                return;
+            }
+
+            foreach (var item in enumerable)
+            {
+                collection.Add(item);
+            }
+        }
+
+        public static bool TryGetValueForAssignableType<T>(this IDictionary<Type, T> dictionary, Type key, [NotNullWhen(true)] out T? value)
+            where T : class
         {
             value = default;
 
@@ -21,7 +35,8 @@
             return false;
         }
 
-        public static bool TryGetValueForAssignableType<T>(this IDictionary<(Type, string), T> dictionary, (Type, string) key, out T value)
+        public static bool TryGetValueForAssignableType<T>(this IDictionary<(Type, string), T> dictionary, (Type, string) key, [NotNullWhen(true)] out T? value)
+            where T : class
         {
             value = default;
 

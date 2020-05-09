@@ -1,4 +1,4 @@
-﻿namespace Charming.Serialization
+﻿namespace Charming.Internal
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,7 @@
 
         public override void WriteJson(JsonWriter writer, IList<Output> value, JsonSerializer serializer)
         {
-            if (value == null)
+            if (value is null)
             {
                 return;
             }
@@ -30,12 +30,6 @@
                 writer.WritePropertyName(item.Key);
 
                 writer.WriteStartObject();
-
-                if (!string.IsNullOrWhiteSpace(item.Condition))
-                {
-                    writer.WritePropertyName("condition");
-                    writer.WriteValue(item.Condition);
-                }
 
                 writer.WritePropertyName("type");
                 writer.WriteValue(GetOutputType(item.Value));

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>Charming</AssemblyName>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Nullable>annotations</Nullable>
+    <Nullable>enable</Nullable>
     <Description>A simple lightweight library that helps you generate ARM templates using POCO types and the usual programming language constructs in C#</Description>
     <PackageId>Charming</PackageId>
     <PackageProjectUrl>https://github.com/tzkhan/Charming</PackageProjectUrl>
@@ -12,6 +12,7 @@
     <VersionPrefix>0.1.0</VersionPrefix>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

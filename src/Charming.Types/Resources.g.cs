@@ -1,9 +1,11 @@
 namespace Charming.Types.Resources
 {
+    using System;
     using Charming;
+    using Charming.Types.Internal;
     using System.Collections.Generic;
 
-    public partial class Deployment : Resource<DeploymentProperties>
+    public class Deployment : Resource<DeploymentProperties>
     {
         public Deployment() => (Type, ApiVersion) = ("Microsoft.Resources/deployments", "2019-10-01");
         public Deployment(string name) : this() => Name = name;
@@ -12,111 +14,200 @@ namespace Charming.Types.Resources
         public string SubscriptionId { get; set; }
 
         public string ResourceGroup { get; set; }
+
+        public Deployment WithProperties(Action<DeploymentProperties> setter)
+        {
+            PropertyBase.SetProperties(setter, Properties);
+            return this;
+        }
     }
 
-    public partial class DeploymentProperties
+    public class DeploymentProperties : PropertyBase
     {
+
         public ITemplate Template { get; set; }
-        public TemplateLinkInfo TemplateLink { get; set; }
+
+        private TemplateLinkInfo _templateLink;
+        public TemplateLinkInfo TemplateLink
+        {
+            get => _templateLink = Get(_templateLink);
+            set => _templateLink = value;
+        }
+
         public IList<Parameter> Parameters { get; set; }
-        public ParametersLinkInfo ParametersLink { get; set; }
+
+        private ParametersLinkInfo _parametersLink;
+        public ParametersLinkInfo ParametersLink
+        {
+            get => _parametersLink = Get(_parametersLink);
+            set => _parametersLink = value;
+        }
+
         public DeploymentMode Mode { get; set; }
-        public DebugSettingInfo DebugSetting { get; set; }
-        public OnErrorDeploymentInfo OnErrorDeployment { get; set; }
+
+        private DebugSettingInfo _debugSetting;
+        public DebugSettingInfo DebugSetting
+        {
+            get => _debugSetting = Get(_debugSetting);
+            set => _debugSetting = value;
+        }
+
+        private OnErrorDeploymentInfo _onErrorDeployment;
+        public OnErrorDeploymentInfo OnErrorDeployment
+        {
+            get => _onErrorDeployment = Get(_onErrorDeployment);
+            set => _onErrorDeployment = value;
+        }
     }
 
-    public partial class TemplateLinkInfo
+    public class TemplateLinkInfo : PropertyBase
     {
+
         public string Uri { get; set; }
+
         public string ContentVersion { get; set; }
     }
 
-    public partial class ParametersLinkInfo
+    public class ParametersLinkInfo : PropertyBase
     {
+
         public string Uri { get; set; }
+
         public string ContentVersion { get; set; }
     }
 
-    public partial class DebugSettingInfo
+    public class DebugSettingInfo : PropertyBase
     {
+
         public string DetailLevel { get; set; }
     }
 
-    public partial class OnErrorDeploymentInfo
+    public class OnErrorDeploymentInfo : PropertyBase
     {
+
         public string Type { get; set; }
+
         public string DeploymentName { get; set; }
     }
 
-    public partial class DeploymentScript : Resource<DeploymentScriptProperties>
+    public class DeploymentScript : Resource<DeploymentScriptProperties>
     {
         public DeploymentScript() => (Type, ApiVersion) = ("Microsoft.Resources/deploymentScripts", "2019-10-01-preview");
         public DeploymentScript(string name) : this() => Name = name;
         public DeploymentScript(string name, Location location) : this() => (Name, Location) = (name, location);
 
         public IdentityInfo Identity { get; set; }
+
+        public DeploymentScript WithProperties(Action<DeploymentScriptProperties> setter)
+        {
+            PropertyBase.SetProperties(setter, Properties);
+            return this;
+        }
     }
 
-    public partial class IdentityInfo
+    public class IdentityInfo : PropertyBase
     {
+
         public string Type { get; set; }
-        public UserAssignedIdentitiesInfo UserAssignedIdentities { get; set; }
+
+        private UserAssignedIdentitiesInfo _userAssignedIdentities;
+        public UserAssignedIdentitiesInfo UserAssignedIdentities
+        {
+            get => _userAssignedIdentities = Get(_userAssignedIdentities);
+            set => _userAssignedIdentities = value;
+        }
     }
 
-    public partial class UserAssignedIdentitiesInfo
+    public class UserAssignedIdentitiesInfo : PropertyBase
     {
+
         public string PrincipalId { get; set; }
+
         public string ClientId { get; set; }
     }
 
-    public partial class DeploymentScriptProperties
+    public class DeploymentScriptProperties : PropertyBase
     {
+
         public string AzPowerShellVersion { get; set; }
+
         public string AzCliVersion { get; set; }
-        public ContainerSettingsInfo ContainerSettings { get; set; }
+
+        private ContainerSettingsInfo _containerSettings;
+        public ContainerSettingsInfo ContainerSettings
+        {
+            get => _containerSettings = Get(_containerSettings);
+            set => _containerSettings = value;
+        }
+
         public string CleanupPreference { get; set; }
+
         public string PrimaryScriptUri { get; set; }
+
         public IList<string> SupportingScriptUris { get; set; }
+
         public string ScriptContent { get; set; }
+
         public string Arguments { get; set; }
+
         public IList<EnvironmentVariableInfo> EnvironmentVariables { get; set; }
+
         public string ForceUpdateTag { get; set; }
+
         public string RetentionInterval { get; set; }
+
         public string Timeout { get; set; }
     }
 
-    public partial class ContainerSettingsInfo
+    public class ContainerSettingsInfo : PropertyBase
     {
+
         public string ContainerGroupName { get; set; }
     }
 
-    public partial class EnvironmentVariableInfo
+    public class EnvironmentVariableInfo : PropertyBase
     {
+
         public string Name { get; set; }
+
         public string Value { get; set; }
+
         public string SecureValue { get; set; }
     }
 
-    public partial class ResourceGroup : Resource<ResourceGroupProperties>
+    public class ResourceGroup : Resource<ResourceGroupProperties>
     {
         public ResourceGroup() => (Type, ApiVersion) = ("Microsoft.Resources/resourceGroups", "2019-10-01");
         public ResourceGroup(string name) : this() => Name = name;
         public ResourceGroup(string name, Location location) : this() => (Name, Location) = (name, location);
+
+        public ResourceGroup WithProperties(Action<ResourceGroupProperties> setter)
+        {
+            PropertyBase.SetProperties(setter, Properties);
+            return this;
+        }
     }
 
-    public partial class ResourceGroupProperties
+    public class ResourceGroupProperties : PropertyBase
     {
     }
 
-    public partial class Tag : Resource<TagProperties>
+    public class Tag : Resource<TagProperties>
     {
         public Tag() => (Type, ApiVersion) = ("Microsoft.Resources/tags", "2019-10-01");
         public Tag(string name) : this() => Name = name;
         public Tag(string name, Location location) : this() => (Name, Location) = (name, location);
+
+        public Tag WithProperties(Action<TagProperties> setter)
+        {
+            PropertyBase.SetProperties(setter, Properties);
+            return this;
+        }
     }
 
-    public partial class TagProperties
+    public class TagProperties : PropertyBase
     {
+
         public IDictionary<string, string> Tags { get; set; }
     }
 }

@@ -84,6 +84,50 @@
         }
 
         [Fact]
+        public void ResourceWithPropertiesSetter()
+        {
+            // Arrange
+            var resource = new Types.Resources.Deployment()
+                .WithProperties(x =>
+                {
+                    x.Mode = DeploymentMode.Complete;
+                    x.TemplateLink.Uri = "value";
+                });
+
+            var template = new TestTemplate()
+                .WithResources(resource);
+
+            // Act
+            var result = template.ToJson(_options);
+
+            // Assert
+            var expected = @"{
+              ""$schema"":""{DefaultTemplateSchema}"",
+              ""contentVersion"":""{DefaultContentVersion}"",
+              ""resources"": [
+                {
+                  ""type"": ""{DefaultResourceType}"",
+                  ""apiVersion"": ""{DefaultApiVersion}"",
+                  ""name"": """",
+                  ""properties"": {
+                    ""mode"": ""Complete"",
+                    ""templateLink"": {
+                      ""uri"": ""value""
+                    }
+                  },
+                }
+              ],
+              ""outputs"": {}
+            }";
+
+            expected = expected
+                .Replace("{DefaultResourceType}", resource.Type)
+                .Replace("{DefaultApiVersion}", resource.ApiVersion);
+
+            JsonShouldBeEquivalent(expected, result);
+        }
+
+        [Fact]
         public void ResourceWithProperties()
         {
             // Arrange
